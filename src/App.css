@@ -73,12 +73,14 @@ body {
 }
 
 .servicos {
-  padding: 25px;
   min-height: 400px;
+  padding: 25px 150px 0px 150px;
 }
 
 .servicos p {
   text-align: justify;
+  margin-top: 8px;
+  font-size: 13px;
 }
 
 .servicos h3,
@@ -109,7 +111,8 @@ body {
 
 .icon {
   min-width: auto;
-  min-height: 50px;
+  height: 70px;
+  margin-left: 15px;
 }
 
 .sobrenos {
@@ -136,7 +139,6 @@ body {
   color: white;
 }
 
-.como-funciona,
 .dados,
 .rodape {
   padding: 25px;
@@ -144,69 +146,114 @@ body {
   margin-top: 20px;
   text-align: center;
 }
-.cadastro{
+
+.funciona {
+  padding: 25px;
+  min-height: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.como-funciona {
+  padding: 25px;
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.icon-como-funciona {
+  margin-bottom: 30px;
+  height: 80px;
+  width: 80px;
+}
+
+.botao-leiamais button {
+  background-color: #99C03C;
+}
+
+.cadastro {
   padding: 25px;
   min-height: auto;
   margin-top: 20px;
   text-align: center;
   background-color: #00B8E2;
 }
+
 .como-funciona h1,
 .dados h1,
 .rodape h1 {
   text-align: center;
 }
-.cadastro h1{
+
+.cadastro h1 {
   color: white;
 }
-.cadastro p{
+
+.cadastro p {
   color: white;
 }
+
 .form-center {
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  flex-direction: column;
-  width: 100%; 
-  margin-top: 10px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
 }
+
 form {
   width: 100%;
   max-width: 600px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-top: 0px;
+  justify-content: center;
   padding: 10px;
+  margin: 0 auto;
 }
 
 .form-row {
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
-  flex: 1;
+  justify-content: center;
 }
 
 .form-group {
   position: relative;
   flex: 1;
-  min-width: 180px;
+  min-width: 350px;
 }
+
+.form-group input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  font-size: 16px;
+}
+
 button {
-  margin-left: 15px ;
+  margin-left: 15px;
   padding: 9px 20px;
   background-color: #00B8E2;
   color: white;
   border: 2px solid white;
   cursor: pointer;
   height: 100%;
+  align-self: center;
 }
 
 .icon-input {
   font-family: 'Roboto', sans-serif;
-  padding: 8px 8px 8px 40px;
-  font-size: 14px;
+  padding: 12px 12px 12px 40px;
+  font-size: 16px;
   width: 100%;
 }
+
+
 
 .form-group::before {
   font-family: "Font Awesome 5 Free";
@@ -240,31 +287,58 @@ input::placeholder {
   min-height: auto;
   margin-top: 20px;
 }
-.dados-table{
+
+.dados-table {
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; 
+  align-items: flex-start;
   padding: 40px;
 }
+
 .dados h1 {
   text-align: center;
 }
+
 table {
   border-collapse: collapse;
   min-height: auto;
   width: 50%;
 }
-th, td {
+
+th,
+td {
   border: 1px solid #000;
-  padding: 12px; 
+  padding: 12px;
   text-align: left;
 }
+
 .rodape {
   padding: 25px;
   min-height: auto;
-  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  border-top: 0.1px solid #828282;
+  box-sizing: border-box;
 }
-.rodape h1 {
+.rodape p{
+  text-align: start;
+  margin-left: 20px;
+}
+.icon-rodape{
+  height: 45px;
+  width: 45px;
+  margin-right: 20px;
+}
+.rodapedois{
   text-align: center;
+  padding: 15px;
+  background-color: #828282;
+  color: white;
+}
+.cubo{
+  font-weight: 700;
 }

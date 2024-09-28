@@ -10,6 +10,71 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+const RadialLoader = () => {
+  const percentage = 82; 
+
+  const data = {
+    labels: ['Carregando', 'Concluído'],
+    datasets: [
+      {
+        data: [percentage, 100 - percentage], // Totalizando 100
+        backgroundColor: ['#FFFFFF', '#404A58'],
+        borderWidth: 0,
+      },
+    ],
+  };
+
+  const options = {
+    cutout: '90%',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false, // Ocultar legenda
+      },
+      tooltip: {
+        enabled: false, // Ocultar tooltip
+      },
+      // Plugin para adicionar o percentual no centro
+      // Adicionando um plugin inline
+      datalabels: {
+        display: false, // Ocultar os rótulos do gráfico
+      },
+    },
+  };
+
+  const plugins = [
+    {
+      id: 'centerText',
+      beforeDraw: (chart) => {
+        const ctx = chart.ctx;
+        const width = chart.width;
+        const height = chart.height;
+        const fontSize = (height / 114).toFixed(2); // Tamanho do texto
+        ctx.restore();
+        ctx.font = `${fontSize}px sans-serif`;
+        ctx.textBaseline = 'middle';
+        
+        const text = `${percentage}%`; // Texto a ser exibido
+        const textX = Math.round((width - ctx.measureText(text).width) / 2); // Centralizar
+        const textY = height / 2; // Centralizar
+
+        ctx.fillStyle = '#404A58'; // Cor do texto
+        ctx.fillText(text, textX, textY); // Desenhar o texto
+        ctx.save();
+      },
+    },
+  ];
+
+  return (
+    <div style={{ width: '200px', height: '200px' }}>
+      <Doughnut data={data} options={options} plugins={plugins} />
+    </div>
+  );
+}
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -51,7 +116,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://of900lijd5.execute-api.us-east-1.amazonaws.com/v2/front-end/grid-people'); // URL da API
+        const response = await fetch('https://of900lijd5.execute-api.us-east-1.amazonaws.com/v2/front-end/grid-people');
         const data = await response.json();
         setTableData(data);
         setChartData(data.map(item => ({ name: item.nome, value: parseFloat(item.participacao) })));
@@ -109,25 +174,43 @@ function App() {
         <div className="grid-servicos">
           <div className="grid-item"><h5>RHONCUS PURUS IN</h5>
             <div className="bloco"><img src="/icon1.png" alt="Icon 1" className="icon" />
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p></div>
           </div>
           <div className="grid-item"><h5>MATTIS AUGUE TRISTIQUE</h5> <div className="bloco"><img src="/icon2.png" alt="Icon 1" className="icon" />
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div></div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div></div>
           <div className="grid-item"><h5>ELEMENTUM LACUS VITAE</h5><div className="bloco"><img src="/icon3.png" alt="Icon 1" className="icon" />
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div></div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div></div>
           <div className="grid-item"><h5>MAURIS BIBENDUM ODIO LIGULA</h5><div className="bloco"><img src="/icon4.png" alt="Icon 1" className="icon" />
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></div></div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div></div>
         </div>
       </div>
       <div className="sobrenos">
         <div className="quadrado imagem"><img src="/slide2.jpeg" alt="Slide 2" className="slide-img" /></div>
         <div className="quadrado texto-sobrenos">
           <h1>Sobre nós</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry is simply dummy text of the printing and typesetting industryis simply dummy text of the printing and typesetting industryis simply dummy text of the printing and typesetting industryis simply dummy text of the printing and typesetting industryis simply dummy text of the printing and typesetting industryis simply dummy text of the printing and typesetting industryis simply dummy text of the printing and typesetting industryis simply dummy text of the printing and typesetting industry.</p>
+          <RadialLoader />
         </div>
       </div>
-      <div className="como-funciona">
+      <div className="funciona">
         <h1>COMO FUNCIONA?</h1>
+        <div className="como-funciona">
+          <div className="passo1"><img src="/world.png" alt="Slide 2" className="icon-como-funciona" /><h4>PASSO 1</h4>
+            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry is simply dummy text of the printing and typesetting industryis</p>
+          </div>
+          <div className="passo2"><img src="/cart.png" alt="Slide 2" className="icon-como-funciona" /><h4>PASSO 2</h4>
+            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry is simply dummy text of the printing and typesetting industryis </p>
+          </div>
+          <div className="passo3"><img src="/like.png" alt="Slide 2" className="icon-como-funciona" /><h4>PASSO 3</h4>
+            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry is simply dummy text of the printing and typesetting industryis </p>
+          </div>
+          <div className="passo4"><img src="/truck.png" alt="Slide 2" className="icon-como-funciona" /><h4>PASSO 4</h4>
+            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry is simply dummy text of the printing and typesetting industryis </p>
+          </div>
+        </div>
+        <div className="botao-leiamais">
+          <button type="submit"><h4>LEIA MAIS</h4></button>
+        </div>
       </div>
       <div className="cadastro">
         <h1>CADASTRE-SE</h1>
@@ -181,7 +264,20 @@ function App() {
         </div>
       </div>
       <div className="rodape">
-        <h1>RODAPÉ</h1>
+        <div className="informacoes">
+          <p className="cubo">CUBO</p>
+          <p>Rua Casa do Ator, 123</p>
+          <p>01458-532 - São Paulo, SP</p>
+          </div>
+          <div className="icons">
+            <img src="/facebook.png" alt="Icon Facebook" className="icon-rodape" />
+            <img src="/google-plus.png" alt="Google Plus" className="icon-rodape" />
+            <img src="/twitter.png" alt="Twitter" className="icon-rodape" />
+            <img src="/youtube.png" alt="Youtube" className="icon-rodape" />
+          </div>
+      </div>
+      <div className="rodapedois">
+              @copyright 2016 - Lorem ipsum dolor sit amet consectetur
       </div>
     </div>
   );
