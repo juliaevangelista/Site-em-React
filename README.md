@@ -1,1 +1,1 @@
-Teste Técnico para B2Y - Landing Page
+Landing Page em React
